@@ -11,13 +11,13 @@ const ContactApi = () => {
   const [contacts] = Contacthooks();
 
   //  Function for deleting any contact values and shows using alert
-  console.log(contacts);
+
   const deleteContact = (id) => {
     axios
       .delete(`https://jsonplaceholder.typicode.com/users/${id}`)
       .then((result) => {
         // alert("deleted");
-        afterDelete(result.data);
+       console.log(result.data);
       });
   };
 
@@ -32,7 +32,7 @@ const ContactApi = () => {
         {contacts.map((contact, id) => (
           <Card key={contact.id}>
             <NavLink to={`./details/${contact.id}`}>{contact.name} </NavLink>
-            <ButtonD onClick={() => deleteContact(contact.id)}>Delete</ButtonD>
+           
           </Card>
         ))}
       </Container>
@@ -44,17 +44,7 @@ export default ContactApi;
 
 // Our Custom Styled components
 
-const ButtonD = styled.button`
-  color: red;
-  display: flex;
-  margin-top: 5px;
-  margin-left: 140px;
-  height: 20px;
-  font-size: 10px;
-  display: flex;
-  border: 1px solid;
-  border-radius: 5px;
-`;
+
 
 const Button = styled.button`
   width: 100%;

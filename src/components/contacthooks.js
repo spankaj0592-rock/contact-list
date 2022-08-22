@@ -8,6 +8,8 @@ import { useEffect, useState } from "react";
 const Contacthooks = () => {
   const [contacts, setContact] = useState([]);
 
+  
+
   useEffect(() => {
     const getContacts = async () => {
       try {
@@ -17,6 +19,7 @@ const Contacthooks = () => {
 
         const myContact = response.data;
         setContact(myContact);
+      
       } catch (error) {
         console.log(error);
       }
