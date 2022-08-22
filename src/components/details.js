@@ -1,83 +1,93 @@
+import styled from "styled-components";
+import { NavLink, useLocation } from "react-router-dom";
+import Contacthooks from "./contacthooks";
 
-import React, { useEffect, useState } from "react";
-import styled from 'styled-components'
+// Function For grt Contact list details
 
-
-
+// Using Id  by Using A loop method
 
 function Details() {
- 
+  const [contacts] = Contacthooks();
+  const id = useLocation().pathname.split("/")[2];
 
-    const [contact, setContact] = useState([]);
-   
-    const[id,setID] =useState(3);
-    const getContacts = async() => {
-      const response = await fetch(`https://jsonplaceholder.typicode.com/users/${id}`);
-      
-       setContact(await response.json());
-        setID(await response.json());
-};
-  
-    useEffect(() => {
+  for (var i = 0; i < contacts.length; i++) {
+    if (contacts[i].id == id) {
+      const contact = contacts[i];
+      console.log(contact.name);
+      return (
+        <Container>
+          <Card>
+            <p>Name : {contact.name}</p>
+            <p>UserName : {contact.username}</p>
+            <p>Email : {contact.email}</p>
+            <p>Street : {contact.address.street}</p>
+            <p>Suits : {contact.address.suite}</p>
+            <p>city : {contact.address.city}</p>
+            <p>Zipcode : {contact.address.zipcode}</p>
+            <p> Lat : {contact.address.geo.lat}</p>
+            <p>Lang : {contact.address.geo.lang}</p>
+            <p>Phone : {contact.phone}</p>
+            <p>Website : {contact.website}</p>
+            <p> Name : {contact.company.name}</p>
+            <p>CatchPhrase : {contact.company.catchPhrase}</p>
+            <p>Bs : {contact.company.bs}</p>
 
-      getContacts();
-    
-    },[]);
-    // console.log(id);
-   
-  return (
-      
-<Container>
-      <Card  value={id} onChange ={e=>setID(e.target.value)}>
-          <span>UserName:{contact.name}</span><br/>
-            <span>Email:{contact.email}</span><br/>
-            <span>Phone:{contact.phone}</span><br/>
-            <span>website:{contact.website}</span><br/>
-            {/* <span>City:{contact.address.city}</span><br/> */}
-            {/* <span>Street:{contact.address.street}</span><br/>  */}
-            {/* <span>suit:{contact.address.suit}</span><br/> */}
-            {/* <span>Zipcode:{contact.zipcode}</span> */}
-           
+
+ <NavLink to={`/updatecontact/${contact.id}`}>
+            <Button>Edit</Button>
+          </NavLink>
+
           </Card>
-
-    
-          
-       
- 
-    </Container>
-  )
+         
+        </Container>
+      );
+    } else {
+      console.log("error");
+    }
+  }
 }
+export default Details;
 
-export default Details
+// Custom styled components
 
 
-const Container =styled.div`
-margin-left:400px;
-height:auto;
-width:500px;
-background-color:lightblue; 
+const Button = styled.button`
+  color: green;
+  display: flex;
+  margin-top: 5px;
+  margin-left: 200px;
+  height: auto;
+  width: auto;
+  font-size: 30px;
+  display: flex;
+  border: 1px solid;
+  border-radius: 5px;
+ 
 `
-const Card =styled.div`
-
-height: 100%;
-width: 100%;
-background-color:lightblue;
 
 
-box-shadow: rgb(25 25 25 / 69%) 0px 26px 30px -10px,
+const Container = styled.div`
+  margin-left: 400px;
+  height: auto;
+  width: 500px;
+  background-color: lightblue;
+
+`;
+const Card = styled.div`
+  text-align: center;
+  cursor: pointer;
+  border: 5px solid;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  width: 100%;
+  background-color: lightblue;
+
+  box-shadow: rgb(25 25 25 / 69%) 0px 26px 30px -10px,
     rgb(0 0 0 / 73%) 0px 16px 10px -10px;
 
-    &:hover {
-    box-shadow: rgb(0 0 0 / 69%) 0px 26px 30px -10px,
-      rgb(0 0 0 / 73%) 0px 16px 10px -10px;
-    transform: scale(1.05);
-    border-color: rgba(249, 249, 249, 0.8);
-  
+  &: span {
+    text-align: center;
+    text-size: 30px;
   }
-
-  &:span{
-   text-size: 30px;
-    
-  }
-`
-
+`;

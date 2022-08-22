@@ -3,3 +3,6 @@
   border:5px;
 }
 
+span{
+  display: inline-block;
+}

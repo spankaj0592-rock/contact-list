@@ -1,11 +1,10 @@
 import React from 'react';
-import './App.css';
 import { BrowserRouter as Router,  Route, Routes } from "react-router-dom";
 import AddContact from './components/addContact';
 import ContactApi from './components/contactApi';
 import Header from './components/Header';
 import Details from './components/details';
-
+import UpdateContact from './components/updatecontact';
 
 function App() {
   return (
@@ -16,8 +15,8 @@ function App() {
 
           <Route path="/" element={<ContactApi/>}/>
          <Route path="/addContact" element={<AddContact/>}/>
-        <Route path="/details/" element={<Details/>}/>
-  
+        <Route path="/details/:id" element={<Details/>}/>
+        <Route path="/updatecontact/:id" element={<UpdateContact/>}/>
           
         
         </Routes>
