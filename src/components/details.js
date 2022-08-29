@@ -2,7 +2,8 @@ import styled from "styled-components";
 import { NavLink, useLocation } from "react-router-dom";
 import Contacthooks from "./contacthooks";
 import axios from "axios";
-// Function For grt Contact list details
+
+// Function For get Contact list details
 
 // Using Id  by Using A loop method
 
@@ -24,7 +25,7 @@ function Details() {
   ///
   // loop method for show contact details after Matching Id
   for (var i = 0; i < contacts.length; i++) {
-    if (contacts[i].id == id) {
+    if (contacts[i].id === id) {
       const contact = contacts[i];
       
       return (

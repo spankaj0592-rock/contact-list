@@ -1,25 +1,26 @@
-import { useLocation } from "react-router-dom";
-import React, { useState } from "react";
 
-import axios from "axios";
+
+
+
 import { NavLink } from "react-router-dom";
 import styled from "styled-components";
 import Contacthooks from "./contacthooks";
 
 const ContactApi = () => {
-  const id = useLocation().pathname.split("/")[2];
+ 
   const [contacts] = Contacthooks();
 
+  console.log(contacts);
   //  Function for deleting any contact values and shows using alert
 
-  const deleteContact = (id) => {
-    axios
-      .delete(`https://jsonplaceholder.typicode.com/users/${id}`)
-      .then((result) => {
-        // alert("deleted");
-       console.log(result.data);
-      });
-  };
+  // const deleteContact = (id) => {
+  //   axios
+  //     .delete(`https://jsonplaceholder.typicode.com/users/${id}`)
+  //     .then((result) => {
+  //       // alert("deleted");
+  //      console.log(result.data);
+  //     });
+  // };
 
   return (
     // Link for Add Contact page and Show Our Contact list on Home Page
